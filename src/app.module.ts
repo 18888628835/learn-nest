@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -10,7 +11,9 @@ import { AppService } from './app.service';
       signOptions: {
         expiresIn: '7d',
       },
+      global: true,
     }),
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
