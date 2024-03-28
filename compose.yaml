@@ -11,6 +11,7 @@ services:
   server:
     build:
       context: .
+    restart: on-failure:2
     environment:
       - NODE_ENV=production
       - DATABASE_URL=postgresql://postgres:root@db:5432/postgres?schema=public
@@ -43,7 +44,7 @@ services:
 
   redis:
     image: redis:7.0
-    restart: always
+    restart: unless-stopped
     volumes:
       - redis-data:/data
     expose:
